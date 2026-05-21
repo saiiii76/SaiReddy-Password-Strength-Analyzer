@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Analyzer</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f4f8;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 25px;
+            background: #eef3ff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .hash {
+            word-break: break-all;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Password Strength Analyzer</h1>
+
+    <form method="POST">
+        <label>Enter Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Check Strength</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Result</h2>
+
+        <p><strong>Score:</strong> {{ result.score }}</p>
+        <p><strong>Password Strength:</strong> {{ result.strength }}</p>
+
+        <h3>Suggestions:</h3>
+        <ul>
+            {% for suggestion in result.suggestions %}
+            <li>{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Suggested Strong Password:</strong></p>
+        <p>{{ result.suggested_password }}</p>
+
+        <p><strong>Hashed Password:</strong></p>
+        <p class="hash">{{ result.hashed_password }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
