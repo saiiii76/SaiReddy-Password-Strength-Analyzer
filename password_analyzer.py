@@ -1,9 +1,9 @@
+# Developed by Sai Reddy
 import re
 import random
 import string
 import hashlib
 import sqlite3
-
 common_passwords = ["123456", "password", "admin", "qwerty", "abc123"]
 
 def suggest_password():
